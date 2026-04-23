@@ -285,3 +285,5 @@ This project was submitted as a B.Tech capstone report:
 ## 📜 License
 
 MIT License — see [LICENSE](LICENSE) for details.
+
+<!-- last updated: April 2026 -->

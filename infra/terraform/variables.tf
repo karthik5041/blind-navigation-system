@@ -18,3 +18,4 @@ variable "device_id" {
   type        = string
   default     = "rpi-001"
 }
+variable "alert_email" { default = "" }

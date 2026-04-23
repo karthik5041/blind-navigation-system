@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Secrets — NEVER commit certificates or credentials
+*.pem
+*.key
+*.crt
+config/config.yaml
+infra/terraform/*.tfvars
+infra/terraform/.terraform/
+infra/terraform/terraform.tfstate*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,30 @@
+# config/config.example.yaml
+# Copy to /etc/blind-nav/config.yaml and fill in your values
+
+aws:
+  region: us-east-1
+  rekognition:
+    max_labels: 10
+    min_confidence: 75
+  iot:
+    endpoint: "YOUR_IOT_ENDPOINT.iot.us-east-1.amazonaws.com"
+    cert_path: /etc/blind-nav/certs/device.pem.crt
+    key_path:  /etc/blind-nav/certs/private.pem.key
+    ca_path:   /etc/blind-nav/certs/AmazonRootCA1.pem
+
+camera:
+  resolution: [640, 480]
+  fps: 15
+  frame_skip: 3       # Send every 3rd frame to cloud (~5 API calls/sec)
+  jpeg_quality: 85
+
+audio:
+  rate: 150            # Words per minute
+  volume: 0.9
+  cooldown_seconds: 2  # Don't repeat same label within N seconds
+
+hardware:
+  ultrasonic_enabled: true
+  ultrasonic_trigger_pin: 23
+  ultrasonic_echo_pin: 24
+  proximity_threshold_cm: 100

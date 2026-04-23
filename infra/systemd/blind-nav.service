@@ -1,0 +1,47 @@
+[Unit]
+Description=Blind Navigation System - Cloud-backed object detection for visually impaired
+Documentation=https://github.com/karthik5041/blind-navigation-system
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=blindnav
+Group=blindnav
+
+# Working directory and binary
+WorkingDirectory=/opt/blind-nav
+ExecStart=/opt/blind-nav/venv/bin/python /opt/blind-nav/main.py /etc/blind-nav/config.yaml
+
+# Restart policy — restart on failure with backoff
+Restart=on-failure
+RestartSec=5s
+StartLimitIntervalSec=60s
+StartLimitBurst=3
+
+# Logging — all stdout/stderr goes to journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=blind-nav
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/blind-nav /tmp
+PrivateTmp=true
+
+# Resource limits
+MemoryMax=512M
+CPUQuota=80%
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+Environment=AWS_DEFAULT_REGION=us-east-1
+EnvironmentFile=-/etc/blind-nav/env
+
+# Health check — kill and restart if process hangs
+WatchdogSec=30s
+
+[Install]
+WantedBy=multi-user.target
